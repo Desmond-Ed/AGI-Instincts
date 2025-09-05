@@ -19,4 +19,4 @@ Built as a single-file HTML game (no frameworks or build tools required).
 
  **Usage**
 1. Clone the repository:
-   git clone 
+   git clone https://github.com/Desmond-Ed/AGI-Instincts.git
