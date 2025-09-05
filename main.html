@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sentient Quiz</title>
+    <meta
+      name="description"
+      content="Fast, fun quiz about Sentient roles, quests and community basics."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo" aria-label="Sentient Quiz">
+          <div class="logo-mark" role="img" aria-hidden="true"></div>
+          <h1>Sentient Quiz</h1>
+        </div>
+        <div class="row">
+          <button
+            class="btn--ghost"
+            id="toggleTheme"
+            aria-pressed="false"
+            title="Toggle theme"
+          >
+            🌙 Theme
+          </button>
+          <button class="btn--secondary" id="howTo">How to play</button>
+          <button class="btn" id="start">Start</button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="card">
+          <h2 class="no-margin-top">Train your AGI instincts</h2>
+          <p class="muted">
+            Speed-run community knowledge: roles, quests, and GRID basics. Earn
+            points, climb the local leaderboard, and challenge friends with a
+            shareable result link.
+          </p>
+          <div class="kpis">
+            <div class="kpi">
+              <div class="v" id="kpi-questions">10</div>
+              <div class="muted">Questions</div>
+            </div>
+            <div class="kpi">
+              <div class="v" id="kpi-time">90s</div>
+              <div class="muted">Timer</div>
+            </div>
+            <div class="kpi">
+              <div class="v" id="kpi-best">0</div>
+              <div class="muted">Best Score</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="leaderboardCard" aria-live="polite">
+          <div class="row row-space-between row-center">
+            <h3 class="no-margin">Leaderboard (Local)</h3>
+            <button class="btn--ghost" id="resetLb" title="Clear leaderboard">
+              Reset
+            </button>
+          </div>
+          <div class="spacer"></div>
+          <table class="table" id="leaderboard">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Time</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <main class="card mt-16" id="stage" aria-live="polite">
+        <div class="quiz" id="quiz" hidden>
+          <div class="row row-space-between">
+            <div class="pill" id="meta">
+              Q <span id="qIndex">1</span>/<span id="qTotal">10</span>
+            </div>
+            <div class="pill" id="timer" aria-label="time left">
+              ⏱ <span id="time">90</span>s
+            </div>
+          </div>
+          <div class="progress" aria-hidden="true">
+            <div class="bar" id="bar"></div>
+          </div>
+
+          <div class="qcard">
+            <div class="qtext" id="qtext">Question text</div>
+            <div class="answers" id="answers"></div>
+          </div>
+
+          <div class="row row-space-between">
+            <button class="btn--secondary" id="prev" disabled>Back</button>
+            <div class="row">
+              <button class="btn--ghost" id="skip">Skip</button>
+              <button class="btn" id="next">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="intro">
+          <h3>Welcome 👋</h3>
+          <p class="muted">
+            Hit <strong>Start</strong> to begin. You have
+            <strong>90 seconds</strong> to answer as many as you can. Correct
+            answers give +10, streaks add a small bonus. You can customize
+            questions below.
+          </p>
+          <details>
+            <summary><strong>Add / Edit Questions</strong></summary>
+            <p class="muted">
+              Paste or edit JSON. Click <em>Load</em> to use it immediately.
+            </p>
+            <textarea id="editor" class="editor"></textarea>
+            <div class="row row-end mt-10">
+              <button class="btn--ghost" id="loadJson">Load</button>
+              <button class="btn--secondary" id="downloadJson">Download</button>
+            </div>
+          </details>
+        </div>
+
+        <div id="results" hidden>
+          <h3>Results</h3>
+          <p id="scoreline"></p>
+          <div class="row">
+            <input
+              id="playerName"
+              placeholder="Your name"
+              aria-label="Your name"
+              class="player-input"
+            />
+            <button class="btn" id="saveScore">Save to Leaderboard</button>
+            <button class="btn--secondary" id="retry">Try again</button>
+            <button class="btn--ghost" id="shareBtn">Share</button>
+          </div>
+          <div class="spacer"></div>
+          <details>
+            <summary><strong>Review answers</strong></summary>
+            <div id="review"></div>
+          </details>
+        </div>
+      </main>
+
+      <footer class="container footer-no-padding">
+        <p class="muted">
+          Made for the Sentient community • Single-file HTML (no build tools).
+          You can self-host by dropping this file on any static server.
+        </p>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
