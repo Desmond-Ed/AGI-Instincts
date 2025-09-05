@@ -19,4 +19,4 @@ Built as a single-file HTML game (no frameworks or build tools required).
 
  **Usage**
 1. Clone the repository:
-   git clone https://github.com/YOUR-USERNAME/sentient-quiz.git
+   git clone 
